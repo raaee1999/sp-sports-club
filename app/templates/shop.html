@@ -1,1 +1,24 @@
-<!-- Shop Page -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="shop-container">
+    {% if content %}
+        <h1>{{ content.title }}</h1>
+        <div class="content-body">{{ content.content | safe }}</div>
+    {% endif %}
+
+    <div class="products-grid">
+        {% if products %}
+            {% for product in products %}
+                <div class="product-card">
+                    <h3>{{ product.title }}</h3>
+                    {% if product.image_url %}
+                        <img src="{{ product.image_url }}" alt="{{ product.title }}" class="product-image">
+                    {% endif %}
+                    <div class="product-description">{{ product.content | safe }}</div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

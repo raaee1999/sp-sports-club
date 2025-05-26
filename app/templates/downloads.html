@@ -1,1 +1,24 @@
-<!-- Downloads Page -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="downloads-container">
+    {% if content %}
+        <h1>{{ content.title }}</h1>
+        <div class="content-body">{{ content.content | safe }}</div>
+    {% endif %}
+
+    <div class="downloads-grid">
+        {% if downloads %}
+            {% for item in downloads %}
+                <div class="download-card">
+                    <h3>{{ item.title }}</h3>
+                    <div class="download-description">{{ item.content | safe }}</div>
+                    {% if item.image_url %}
+                        <a href="{{ item.image_url }}" class="btn-primary" download>Download</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

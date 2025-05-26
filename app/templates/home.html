@@ -1,1 +1,23 @@
-<!-- Home Page -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    {% if content %}
+        <h1>{{ content.title }}</h1>
+        <div class="content-body">{{ content.content | safe }}</div>
+        {% if content.image_url %}
+            <img src="{{ content.image_url }}" alt="{{ content.title }}" class="hero-image">
+        {% endif %}
+    {% endif %}
+</div>
+
+<div class="featured-section">
+    {% if featured %}
+        <h2>{{ featured.title }}</h2>
+        <div class="content-body">{{ featured.content | safe }}</div>
+        {% if featured.image_url %}
+            <img src="{{ featured.image_url }}" alt="{{ featured.title }}" class="featured-image">
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,1 +1,23 @@
-<!-- Events Page -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="events-container">
+    {% if content %}
+        <h1>{{ content.title }}</h1>
+        <div class="content-body">{{ content.content | safe }}</div>
+        {% if content.image_url %}
+            <img src="{{ content.image_url }}" alt="{{ content.title }}" class="event-banner">
+        {% endif %}
+    {% endif %}
+
+    <div class="upcoming-events">
+        {% if upcoming %}
+            <h2>{{ upcoming.title }}</h2>
+            <div class="content-body">{{ upcoming.content | safe }}</div>
+            {% if upcoming.image_url %}
+                <img src="{{ upcoming.image_url }}" alt="{{ upcoming.title }}" class="event-image">
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -10,7 +10,32 @@ main = Blueprint('main', __name__)
 @main.route('/')
 def home():
     content = Content.query.filter_by(page='home').first()
-    return render_template('home.html', content=content)
+    featured = Content.query.filter_by(page='home_featured').first()
+    return render_template('home.html', content=content, featured=featured)
+
+@main.route('/events')
+def events():
+    content = Content.query.filter_by(page='events').first()
+    upcoming = Content.query.filter_by(page='events_upcoming').first()
+    return render_template('events.html', content=content, upcoming=upcoming)
+
+@main.route('/gallery')
+def gallery():
+    content = Content.query.filter_by(page='gallery').first()
+    gallery_items = Content.query.filter_by(page='gallery_items').all()
+    return render_template('gallery.html', content=content, gallery_items=gallery_items)
+
+@main.route('/shop')
+def shop():
+    content = Content.query.filter_by(page='shop').first()
+    products = Content.query.filter_by(page='shop_products').all()
+    return render_template('shop.html', content=content, products=products)
+
+@main.route('/downloads')
+def downloads():
+    content = Content.query.filter_by(page='downloads').first()
+    downloads = Content.query.filter_by(page='download_items').all()
+    return render_template('downloads.html', content=content, downloads=downloads)
 
 @main.route('/login', methods=['GET', 'POST'])
 def login():

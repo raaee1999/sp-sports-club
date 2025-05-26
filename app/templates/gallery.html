@@ -1,1 +1,24 @@
-<!-- Gallery Page -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="gallery-container">
+    {% if content %}
+        <h1>{{ content.title }}</h1>
+        <div class="content-body">{{ content.content | safe }}</div>
+    {% endif %}
+
+    <div class="gallery-grid">
+        {% if gallery_items %}
+            {% for item in gallery_items %}
+                <div class="gallery-item">
+                    <h3>{{ item.title }}</h3>
+                    {% if item.image_url %}
+                        <img src="{{ item.image_url }}" alt="{{ item.title }}" class="gallery-image">
+                    {% endif %}
+                    <div class="item-description">{{ item.content | safe }}</div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
