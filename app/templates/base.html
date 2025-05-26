@@ -1,1 +1,36 @@
-<!-- Base Template -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SP Sports Club</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{{ url_for('main.home') }}">Home</a>
+        <a href="{{ url_for('main.events') }}">Events</a>
+        <a href="{{ url_for('main.gallery') }}">Gallery</a>
+        <a href="{{ url_for('main.shop') }}">Shop</a>
+        <a href="{{ url_for('main.downloads') }}">Downloads</a>
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('admin.index') }}">Admin</a>
+        <a href="{{ url_for('main.logout') }}">Logout</a>
+        {% else %}
+        <a href="{{ url_for('main.login') }}">Login</a>
+        {% endif %}
+    </nav>
+    
+    <div class="content">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

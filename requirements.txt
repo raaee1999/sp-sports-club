@@ -1,2 +1,6 @@
 Flask
 gunicorn
+Flask-Admin
+Flask-SQLAlchemy
+Flask-Login
+Werkzeug
